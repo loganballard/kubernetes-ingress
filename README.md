@@ -10,3 +10,8 @@ Navigate to {minikube ip}/meow to see the first hello-world, then {minikube ip}/
 Spinning up a resource:
 
 `$ kubectl apply -f hello_world_deployment.yaml`
+
+starting up mongo statefulset in minikube:
+
+`$ kubectl apply -f mongo/headless_service.yaml`
+`$ kubectl apply -f mongo/stateful_sets.yaml`
