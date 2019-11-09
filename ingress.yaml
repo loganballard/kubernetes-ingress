@@ -1,18 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: meow-ingress
+  name: api-test-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
   rules:
   - http:
       paths:
-      - path: /meow/
+      - path: /
         backend:
-          serviceName: meow-svc
-          servicePort: 80
-      - path: /meow2/
-        backend:
-          serviceName: meow-svc-2
-          servicePort: 80
+          serviceName: api-test-svc
+          servicePort: 8080
+      # - path: /meow/
+      #   backend:
+      #     serviceName: meow-svc
+      #     servicePort: 80
+      # - path: /meow2/
+      #   backend:
+      #     serviceName: meow-svc-2
+      #     servicePort: 80

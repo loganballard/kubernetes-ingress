@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-test
+  template:
+    metadata:
+      labels:
+        app: api-test
+    spec:
+      containers:
+      - name: api-test
+        image: loganballard/logan-k8s-api:0.0.3
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /api/v1
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 3
