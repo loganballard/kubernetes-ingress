@@ -12,11 +12,3 @@ spec:
         backend:
           serviceName: api-test-svc
           servicePort: 8080
-      # - path: /meow/
-      #   backend:
-      #     serviceName: meow-svc
-      #     servicePort: 80
-      # - path: /meow2/
-      #   backend:
-      #     serviceName: meow-svc-2
-      #     servicePort: 80

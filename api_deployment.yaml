@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
       - name: api-test
-        image: loganballard/logan-k8s-api:0.0.3
+        image: loganballard/logan-k8s-api:0.0.13
         ports:
         - containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /api/v1
+            path: /
             port: 8080
           initialDelaySeconds: 10
-          periodSeconds: 3
+          periodSeconds: 300

@@ -1,17 +1,56 @@
-# kubernetes-ingress
+# Kubernetes Deployment for the Deepmarket API
 
-With minikube running locally, spin up the deployments first, then the services, then the ingress controller.
-Navigate to {minikube ip}/meow to see the first hello-world, then {minikube ip}/meow2 for the second.
+### Setup
 
-[To install minikube locally.](https://kubernetes.io/docs/tasks/tools/install-minikube/).
+How to get a deployment of the DeepMarket/api repo running locally in kubernetes with minikube.  This is intended to provide resiliency to the pacific and atlantic servers.
 
-[to install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+Steps to get this to work are outlined below.
 
-Spinning up a resource:
+Before doing anything else:
+- Make sure to have `minikube` running locally.  Can check this with `minikube ip` and make sure that it spits something out.
+- Enable the ingress functionality in minikube:
+    - `$ minikube addons enable ingress`
 
-`$ kubectl apply -f hello_world_deployment.yaml`
+To set up:
 
-starting up mongo statefulset in minikube:
+- clone this repo and cd into the root dir
+- Deploy mongo
+    - `$ kubectl apply -f ./mongo/headless_service.yaml`
+    - `$ kubectl apply -f ./mongo/stateful_sets.yaml`
+- Configure mongo
+    - Wait until mongo pods are ready.  check their status with `$ kubectl get pods`
+    - When they are ready, initialize the replica set:
+    - *I Should Write A Script For This*
+    - exec into a running shell in the first pod: `$ kubectl exec -it mongod-0 -- /bin/sh`
+    - run mongo: `#/ mongo`
+    - run the replica set initiate command:
+    ```bash
+    $ rs.initiate({_id: "MainRepSet", version: 1, members: [
+        { _id: 0, host : "mongod-0.mongo-svc.default.svc.cluster.local:27017" },
+        { _id: 1, host : "mongod-1.mongo-svc.default.svc.cluster.local:27017" },
+        { _id: 2, host : "mongod-2.mongo-svc.default.svc.cluster.local:27017" },
+    ]});
+    ```
+- Deploy api service:
+    - `$ kubectl apply -f api_service.yaml`
+- Deploy api:
+    - `$ kubectl apply -f api_deployment.yaml`
 
-`$ kubectl apply -f mongo/headless_service.yaml`
-`$ kubectl apply -f mongo/stateful_sets.yaml`
+### Testing
+
+Find your minikube ip address:
+
+```bash
+$ minikube ip
+172.17.136.94
+```
+
+From there, visit the api in your web browser to make sure api is online:
+
+`http://172.17.136.94:80`
+
+Should return the "api is online" message.
+
+### Testing with PLUTO
+
+In PLUTO, [point the api to your minikube ip address on port 80](https://github.com/deepmarket/PLUTO/blob/develop/src/main/python/api.py#L44) and test that functionality behaves as normal.
