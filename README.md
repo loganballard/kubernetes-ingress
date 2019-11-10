@@ -26,9 +26,9 @@ To set up:
     - run the replica set initiate command:
     ```bash
     $ rs.initiate({_id: "MainRepSet", version: 1, members: [
-        { _id: 0, host : "mongod-0.mongo-svc.default.svc.cluster.local:27017" },
-        { _id: 1, host : "mongod-1.mongo-svc.default.svc.cluster.local:27017" },
-        { _id: 2, host : "mongod-2.mongo-svc.default.svc.cluster.local:27017" },
+        { _id: 0, host : "mongod-0.mongo.default.svc.cluster.local:27017" },
+        { _id: 1, host : "mongod-1.mongo.default.svc.cluster.local:27017" },
+        { _id: 2, host : "mongod-2.mongo.default.svc.cluster.local:27017" },
     ]});
     ```
 - Deploy api service:
