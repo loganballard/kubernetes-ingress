@@ -8,6 +8,7 @@ Steps to get this to work are outlined below.
 
 Before doing anything else:
 - Make sure to have `minikube` running locally.  Can check this with `minikube ip` and make sure that it spits something out.
+- [minikube installation instructions](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 - Enable the ingress functionality in minikube:
     - `$ minikube addons enable ingress`
 
