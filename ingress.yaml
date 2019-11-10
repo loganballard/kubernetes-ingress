@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: api-test-ingress
+  name: dm-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
@@ -10,5 +10,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: api-test-svc
+          serviceName: dm-api-svc
           servicePort: 8080

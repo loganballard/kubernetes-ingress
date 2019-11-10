@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-test
+  name: dm-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: api-test
+      app: dm-api
   template:
     metadata:
       labels:
-        app: api-test
+        app: dm-api
     spec:
       containers:
-      - name: api-test
-        image: loganballard/logan-k8s-api:0.0.13
+      - name: dm-api
+        image: loganballard/logan-k8s-api:0.0.15
         ports:
         - containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /
+            path: /api/v1
             port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 300
+          initialDelaySeconds: 15
+          periodSeconds: 10

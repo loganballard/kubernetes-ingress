@@ -21,20 +21,22 @@ To set up:
     - Wait until mongo pods are ready.  check their status with `$ kubectl get pods`
     - When they are ready, initialize the replica set:
     - *I Should Write A Script For This*
-    - exec into a running shell in the first pod: `$ kubectl exec -it mongod-0 -- /bin/sh`
+    - exec into a running shell in the first pod: `$ kubectl exec -it dm-mongo-0 -- /bin/sh`
     - run mongo: `#/ mongo`
     - run the replica set initiate command:
     ```bash
-    $ rs.initiate({_id: "MainRepSet", version: 1, members: [
-        { _id: 0, host : "mongod-0.mongo.default.svc.cluster.local:27017" },
-        { _id: 1, host : "mongod-1.mongo.default.svc.cluster.local:27017" },
-        { _id: 2, host : "mongod-2.mongo.default.svc.cluster.local:27017" },
+    $ rs.initiate({_id: "DmRS", version: 1, members: [
+        { _id: 0, host : "dm-mongo-0.dm-mongo-svc.default.svc.cluster.local:27017" },
+        { _id: 1, host : "dm-mongo-1.dm-mongo-svc.default.svc.cluster.local:27017" },
+        { _id: 2, host : "dm-mongo-2.dm-mongo-svc.default.svc.cluster.local:27017" },
     ]});
     ```
 - Deploy api service:
     - `$ kubectl apply -f api_service.yaml`
 - Deploy api:
     - `$ kubectl apply -f api_deployment.yaml`
+- Deploy the Ingress controller:
+    - `$ kubectl apply -f ingress.yaml`
 
 ### Testing
 

@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo
+  name: dm-mongo-svc
   labels:
-    app: mongo
+    app: dm-mongo-svc
 spec:
   ports:
   - port: 27017
-    name: mongo
+    name: dm-mongo-svc
   clusterIP: None
   selector:
-    app: mongod
+    app: dm-mongo
