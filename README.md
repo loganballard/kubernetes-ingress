@@ -14,9 +14,8 @@ Before doing anything else:
 
 To set up:
 
-- clone this repo and cd into the root dir
 - Deploy mongo
-    - `$ kubectl apply -f headless_service.yaml`
+    - `$ kubectl apply -f mongo_service.yaml`
     - `$ kubectl apply -f stateful_sets.yaml`
 - Configure mongo
     - Wait until mongo pods are ready.  check their status with `$ kubectl get pods`

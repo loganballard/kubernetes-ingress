@@ -1,0 +1,4 @@
+api_service:
+  name: dm-api-svc
+  listen_port: 8080
+  out_port: 8080
