@@ -2,7 +2,7 @@
 
 ### Setup
 
-How to get a deployment of the DeepMarket/api repo running locally in kubernetes with minikube.  This is intended to provide resiliency to the pacific and atlantic servers.
+How to get a deployment of the [DeepMarket/api](https://github.com/deepmarket/api/) repo running locally in kubernetes with minikube.  This is intended to provide resiliency to the pacific and atlantic servers.
 
 Steps to get this to work are outlined below.
 
