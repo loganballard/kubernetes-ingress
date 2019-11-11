@@ -16,8 +16,8 @@ To set up:
 
 - clone this repo and cd into the root dir
 - Deploy mongo
-    - `$ kubectl apply -f ./mongo/headless_service.yaml`
-    - `$ kubectl apply -f ./mongo/stateful_sets.yaml`
+    - `$ kubectl apply -f headless_service.yaml`
+    - `$ kubectl apply -f stateful_sets.yaml`
 - Configure mongo
     - Wait until mongo pods are ready.  check their status with `$ kubectl get pods`
     - When they are ready, initialize the replica set:
@@ -35,7 +35,7 @@ To set up:
 - Deploy api service:
     - `$ kubectl apply -f api_service.yaml`
 - Deploy api:
-    - `$ kubectl apply -f api_deployment.yaml`
+    - `$ kubectl apply -f deployment.yaml`
 - Deploy the Ingress controller:
     - `$ kubectl apply -f ingress.yaml`
 
